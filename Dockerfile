@@ -1,4 +1,5 @@
 FROM node:lts-alpine as frontend
+RUN apk add g++ make python2
 WORKDIR /
 COPY frontend/package*.json ./app/
 
@@ -22,4 +23,3 @@ COPY --from=build /home/app/target/backend.jar /usr/local/lib/backend.jar
 
 EXPOSE 1337
 ENTRYPOINT ["java","-jar","/usr/local/lib/backend.jar", "start"]
-
